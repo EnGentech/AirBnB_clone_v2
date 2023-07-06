@@ -12,7 +12,13 @@ sudo chmod -R 777 /etc/nginx/sites-enabled/default
 cp /var/www/html/index.html /var/www/html/back_up
 echo "Hello World!" > /var/www/html/index.html
 
+shared_path='/data/web_static/shared/'
 file_path="/data/web_static/releases/test"
+
+if [ ! -d "$shared_path" ]; then
+    sudo mkdir -p "$shared_path"
+fi
+
 if [ ! -d "$file_path" ]; then
     sudo mkdir -p "$file_path"
 fi
@@ -28,7 +34,8 @@ printf "<!Doctype html>
 <body>
     <p>Holberton School</p>
 </body>
-</html>" > /data/web_static/releases/test/index.html
+</html>
+" > /data/web_static/releases/test/index.html
 
 link_path="/data/web_static/current"
 tag_path="/data/web_static/releases/test/"
@@ -39,7 +46,7 @@ fi
 
 sudo ln -s "$tag_path" "$link_path"
 
-sudo chown -R ubuntu /data/
+sudo chown -R ubuntu:ubuntu /data/
 
 printf "
 server {\n
