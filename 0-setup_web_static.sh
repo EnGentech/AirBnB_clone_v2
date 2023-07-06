@@ -48,7 +48,7 @@ sudo ln -s "$tag_path" "$link_path"
 
 sudo chown -R ubuntu:ubuntu /data/
 
-printf %s"
+printf "
 server {\n
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
