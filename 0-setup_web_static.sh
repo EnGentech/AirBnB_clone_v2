@@ -63,10 +63,6 @@ server {\n
         alias /data/web_static/current/;
     }
 
-    location /redirect_me {
-
-        http://github.com/engentech;
-    }
 }" > /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
