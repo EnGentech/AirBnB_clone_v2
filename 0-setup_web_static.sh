@@ -48,7 +48,7 @@ sudo ln -s "$tag_path" "$link_path"
 
 sudo chown -R ubuntu:ubuntu /data/
 
-printf "
+printf %s"
 server {\n
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
@@ -65,7 +65,7 @@ server {\n
 
     location /redirect_me {
 
-        try_files $uri $uri/ =404;
+        http://github.com/engentech;
     }
 }" > /etc/nginx/sites-enabled/default
 
