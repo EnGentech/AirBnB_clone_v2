@@ -24,7 +24,7 @@ def do_deploy(archive_path):
         e = "rm -rf {}{}/web_static".format(pad, tim)
         f = "rm -rf /data/web_static/current"
         g = "ln -s {}{}/data/web_static/current".format(pad, tim)
-        
+
         commands = [a, b, c, d, e, f, g]
         for command in commands:
             run(command)
