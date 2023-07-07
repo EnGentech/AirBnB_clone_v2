@@ -3,18 +3,21 @@
 
 
 from fabric.api import *
+from datetime import datetime
 from os import path
 
-env.hosts = ['ubuntu@52.91.127.148', 'ubuntu@34.207.58.138']
+env.hosts = ['52.91.127.148', '34.207.58.138']
+env.user = 'ubuntu'
+
 current_time = datetime.now()
 tim = current_time.strftime('%Y%m%d%H%M%S')
 
 
 def do_deploy(archive_path):
     """Function for web deployment"""
-    if path.exits('archive_path'):
+    if path.exists(archive_path):
         put(archive_path, '/tmp/')
-
+        
         commands = ["mkdir -p /data/web_static/releases/\
         web_static_{}".format(tim), "tar -xzf /data/web_static/\
         releases/web_static_{}".format(tim), "rm /tmp/\
@@ -31,3 +34,5 @@ def do_deploy(archive_path):
 
     else:
         return False
+
+# Coded by EnGentech
