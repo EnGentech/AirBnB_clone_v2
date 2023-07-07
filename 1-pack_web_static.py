@@ -7,6 +7,7 @@ from datetime import datetime
 current_time = datetime.now()
 new_time = current_time.strftime('%Y%m%d%H%M%S')
 
+
 def do_pack():
     """define a function to pack all the files into an archive"""
     try:
@@ -14,7 +15,7 @@ def do_pack():
         local("tar -cvzf versions/web_static_\
         {}.tgz web_static".format(new_time))
 
-        return "versions/web_static_{}".format(new_time)
+        return ("versions/web_static_{}".format(new_time))
     except Exception as e:
         return None
 
