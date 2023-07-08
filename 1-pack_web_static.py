@@ -16,7 +16,7 @@ def do_pack():
         web_static".format(new_time))
 
         return ("versions/web_static_{}".format(new_time))
-    except Exception as e:
+    except Exception:
         return None
 
 # Coded by EnGentech

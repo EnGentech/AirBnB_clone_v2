@@ -13,28 +13,26 @@ def do_deploy(archive_path):
     """Function for web deployment"""
     try:
         if path.exists(archive_path):
-            arc_tgz = archive_path.split("/")
-            arg_save = arc_tgz[1]
-            arc_tgz = arc_tgz[1].split('.')
-            arc_tgz = arc_tgz[0]
+            tim = archive_path[20:-4]
+            put(archive_path, '/tmp/')
 
-            """Upload archive to the server"""
-            put(archive_path, '/tmp')
+            pad = "/data/web_static/releases/web_static_"
 
-            """Save folder paths in variables"""
-            uncomp_fold = '/data/web_static/releases/{}'.format(arc_tgz)
-            tmp_location = '/tmp/{}'.format(arg_save)
+            a = "sudo mkdir -p {}{}".format(pad, tim)
+            b = "sudo tar -xzf /tmp/web_static_{}.tgz -C\
+            {}{}".format(tim, pad, tim)
+            c = "sudo rm /tmp/web_static_{}.tgz".format(tim)
+            d = "sudo mv {}{}/web_static/* {}{}".format(pad, tim, pad, tim)
+            e = "sudo rm -rf {}{}/web_static".format(pad, tim)
+            f = "sudo rm -rf /data/web_static/current"
+            g = "sudo ln -s {}{}/ /data/web_static/current".format(pad, tim)
 
-            """Run remote commands on the server"""
-            run('mkdir -p {}'.format(uncomp_fold))
-            run('tar -xvzf {} -C {}'.format(tmp_location, uncomp_fold))
-            run('rm {}'.format(tmp_location))
-            run('mv {}/web_static/* {}'.format(uncomp_fold, uncomp_fold))
-            run('rm -rf {}/web_static'.format(uncomp_fold))
-            run('rm -rf /data/web_static/current')
-            run('ln -sf {} /data/web_static/current'.format(uncomp_fold))
-            run('sudo service nginx restart')
+            commands = [a, b, c, d, e, f, g]
+            for command in commands:
+                run(command)
+
             return True
+
         else:
             return False
     except Exception:
