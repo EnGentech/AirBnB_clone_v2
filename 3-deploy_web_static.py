@@ -8,6 +8,7 @@ from time import strftime
 import os.path
 
 env.hosts = ['52.91.127.148', '34.207.58.138']
+env.user = 'ubuntu'
 
 
 def do_pack():
