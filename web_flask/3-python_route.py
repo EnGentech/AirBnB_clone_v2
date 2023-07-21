@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """My first flask script"""
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 import re
 pattern = re.compile("_")
 
@@ -22,6 +22,20 @@ def hbnb():
 def name(text):
     new = pattern.sub(" ", text)
     return "C {}".format(new)
+
+
+@app.route("/python", strict_slashes=False)
+def python():
+    return "Python is cool"
+
+
+@app.route("/python/<text>", strict_slashes=False)
+def python_text(text="is cool"):
+    if text == "is cool":
+        return redirect(url_for("python"))
+    else:
+        new = pattern.sub(" ", text)
+        return "Python {}".format(new)
 
 
 if __name__ == "__main__":
