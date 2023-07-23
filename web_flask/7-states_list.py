@@ -21,9 +21,5 @@ def close_session():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> ab531ef49d24f638ef30ce135a51c9df0960d115
 # Coded by EnGentech
